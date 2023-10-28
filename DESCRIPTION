@@ -41,7 +41,8 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
-    BiocStyle
+    BiocStyle,
+    DropletUtils
 biocViews:
     ExperimentHub,
     ExpressionData,
