@@ -1,6 +1,6 @@
 Package: MerfishData
 Title: Collection of public MERFISH datasets
-Version: 1.6.0
+Version: 1.7.0
 Authors@R: 
     c(person("Ludwig", "Geistlinger", 
              role = c("aut", "cre"),
