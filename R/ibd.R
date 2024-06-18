@@ -22,10 +22,10 @@
 #' rate in MERFISH. Measurements for these 47 blank barcodes is stored in an
 #' `altExp` named \code{"blank"}.
 #'
-#' The provided data contain cell type labels with three different degrees of
-#' detail. The data have been collected before the insurgence of colitis
-#' (\code{sample_type="Healthy"}) and after some time intervals
-#' (3 days, 9 days, 21 days).
+#' The dataset includes cell type labels with three levels of granularity.
+#' Data were collected at multiple time points: prior to the onset of colitis
+#' (\code{sample_type="Healthy"}) and at intervals of 3 days, 9 days, 
+#' and 21 days post-onset.
 #'
 #' @return An object of class \code{\linkS4class{SpatialExperiment}}.
 #' @references Cadinu et al. (2024) Charting the cellular biogeography in
@@ -70,7 +70,7 @@ MouseColonIBD2024 <- function() {
         counter <- counter + 1
         setTxtProgressBar(pb, counter)
     }
-    rownames(blank.spe) <- paste("Blank", 1:47, sep = "")
+    rownames(blank.spe) <- paste("Blank", 1:47, sep = "-")
     if (interactive()) {
         counter <- counter + 1
         setTxtProgressBar(pb, counter)
