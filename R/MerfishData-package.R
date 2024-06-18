@@ -16,4 +16,5 @@
 #' @importFrom grDevices as.raster
 #' @importFrom S4Vectors metadata metadata<-
 #' @importFrom utils setTxtProgressBar txtProgressBar
+#' @importFrom HDF5Array HDF5Array
 NULL

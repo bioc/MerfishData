@@ -1,0 +1,45 @@
+---
+title: "Import and representation of MERFISH mouse IBD colon data"
+author: 
+  - name: Daniela Corbetta    
+    affiliation: Department of Statistical Sciences, University of Padova
+  - name: Ludwig Geistlinger    
+    affiliation: Center for Computational Biomedicine, Harvard Medical School
+  - name: Tyrone Lee  
+    affiliation: Center for Computational Biomedicine, Harvard Medical School
+  - name: Jeffrey Moffitt
+    affiliation: Department of Microbiology, Harvard Medical School
+  - name: Robert Gentleman
+    affiliation: Center for Computational Biomedicine, Harvard Medical School
+output:
+  BiocStyle::html_document:
+    self_contained: yes 
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    code_folding: show
+date: "`r doc_date()`"
+vignette: >
+  % \VignetteIndexEntry{Mouse ibd colon}
+  % \VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "#>",
+    crop = NULL 
+)
+```
+
+# Setup
+
+```{r, message = FALSE}
+library(MerfishData)
+library(ExperimentHub)
+library(ggplot2)
+library(grid)
+```
+
+# Data

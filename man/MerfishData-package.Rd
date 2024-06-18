@@ -13,6 +13,14 @@ capable of simultaneously measuring the copy number and spatial distribution
 of hundreds to tens of thousands of RNA species in individual cells. The scope
 of the package is to provide MERFISH data for benchmarking and analysis.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/ccb-hms/MerfishData}
+  \item Report bugs at \url{https://github.com/ccb-hms/MerfishData/issues}
+}
+
+}
 \author{
 Ludwig Geistlinger \href{mailto:ludwig_geistlinger@hms.harvard.edu}{ludwig_geistlinger@hms.harvard.edu}
 }

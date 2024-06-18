@@ -33,7 +33,8 @@ Imports:
     ExperimentHub,
     S4Vectors,
     SingleCellExperiment,
-    SummarizedExperiment
+    SummarizedExperiment,
+    HDF5Array
 Suggests:
     grid,
     ggplot2, 
@@ -51,4 +52,4 @@ biocViews:
     SpatialData
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.2
+RoxygenNote: 7.3.1
