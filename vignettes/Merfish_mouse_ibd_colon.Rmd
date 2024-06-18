@@ -93,7 +93,7 @@ The data was obtained from the
 
 ```{r eh}
 eh <- ExperimentHub()
-query(eh, c("MerfishData", "Cadinu2024"))
+AnnotationHub::query(eh, c("MerfishData", "Cadinu2024"))
 ```
 
 ## Segmented data
@@ -178,7 +178,7 @@ ggplot(data = slice_df, aes(x = x, y = y, color = tier1)) +
 ```
 
 
-Lastly, we can compare the spatial organization of cells before the insurgence
+We can compare the spatial organization of cells before the insurgence
 of colitis and at the considered timepoints (after 3, 9, and 21 days):
 
 ```{r}
@@ -228,6 +228,14 @@ distribution of Tier2 cell types. See an example the different composition
 of epithelial cells:
 
 ```{r}
+slice_df$tier2 <- spe$tier2[(spe$mouse_id == "062921_D0_m3a" &
+                                     spe$slice_id=="2") |
+                                     (spe$mouse_id == "092421_D3_m1" &
+                                     spe$slice_id=="2")|
+                                     (spe$mouse_id == "062221_D9_m3" &
+                                     spe$slice_id=="2") |
+                                     (spe$mouse_id == "082421_D21_m1" &
+                                     spe$slice_id=="2")]
 slice_df$color <- ifelse(slice_df$tier1 == "Epithelial", 
                          as.character(slice_df$tier2), "grey")
 
@@ -273,7 +281,7 @@ p
 
 # Interactive exploration
 
-The MERFISH mouse hypothalamus dataset is part of the
+The MERFISH mouse colon IBD dataset is part of the
 [gallery of publicly available MERFISH datasets](https://moffittlab.connect.hms.harvard.edu/merfish/merfish_homepage.html).
 
 This gallery consists of dedicated 
