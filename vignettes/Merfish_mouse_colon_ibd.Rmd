@@ -1,5 +1,5 @@
 ---
-title: "Import and representation of MERFISH mouse IBD colon data"
+title: "Import and representation of MERFISH mouse colon IBD data"
 author: 
   - name: Daniela Corbetta    
     affiliation: Department of Statistical Sciences, University of Padova
@@ -20,7 +20,7 @@ output:
     code_folding: show
 date: "`r doc_date()`"
 vignette: >
-  % \VignetteIndexEntry{Mouse ibd colon}
+  % \VignetteIndexEntry{Mouse colon ibd}
   % \VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
