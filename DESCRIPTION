@@ -8,7 +8,8 @@ Authors@R:
              comment = c(ORCID = "0000-0002-2495-5464")),
       person("Tyrone", "Lee", role = "ctb"),
       person("Helena", "Crowell", role = "ctb",
-             comment = c(ORCID = "0000-0002-4801-1767")),  
+             comment = c(ORCID = "0000-0002-4801-1767")), 
+      person("Daniela", "Corbetta", role = "ctb"), 
       person("Jeffrey", "Moffitt", role = "aut"),
       person("Robert", "Gentleman", role = "aut"))
 Description: MerfishData is an ExperimentHub package that serves publicly available
@@ -42,7 +43,9 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
-    BiocStyle
+    BiocStyle,
+    terra,
+    scater
 biocViews:
     ExperimentHub,
     ExpressionData,
