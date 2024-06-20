@@ -32,10 +32,10 @@
 #' colitis reveals fibroblast trajectories and coordinated spatial remodeling.
 #' Cell, 187(8).
 #' @source \url{https://doi.org/10.5061/dryad.rjdfn2zh3}
-#' @examples spe <- MouseColonIBD2024()
+#' @examples spe <- MouseColonIbdCadinu2024()
 #' @export
 
-MouseColonIBD2024 <- function() {
+MouseColonIbdCadinu2024 <- function() {
     eh <- ExperimentHub::ExperimentHub()
     recs <- AnnotationHub::query(eh, c("MERFISH", "Cadinu2024"))
 

@@ -103,7 +103,7 @@ integrates experimental data and cell metadata, and provides designated
 accessors for the spatial coordinates. 
 
 ```{r data, message = FALSE}
-spe <- MouseColonIBD2024()
+spe <- MouseColonIbdCadinu2024()
 spe
 ```
 
