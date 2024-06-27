@@ -85,7 +85,7 @@ on GEO ([GSE113576](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE113576
 
 ## Segmented data
 
-It is also possible to obtain the data in a [SpatialExperiment](https://bioconductor.org/packages/ExperimentHub), which integrates experimental data and cell metadata, and provides designated accessors for the spatial coordinates.
+It is also possible to obtain the data in a [SpatialExperiment](https://bioconductor.org/packages/SpatialExperiment), which integrates experimental data and cell metadata, and provides designated accessors for the spatial coordinates.
 
 ```{r, message = FALSE}
 spe <- MouseHypothalamusMoffitt2018()
