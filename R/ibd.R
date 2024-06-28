@@ -71,7 +71,7 @@ MouseColonIbdCadinu2024 <- function()
         counter <- counter + 1
         setTxtProgressBar(pb, counter)
     }
-    rownames(blank.spe) <- paste("Blank", 1:47, sep = "-")
+    rownames(blank.spe) <- .getResource(recs, "ibd_blanks_rownames")
     if (interactive()) {
         counter <- counter + 1
         setTxtProgressBar(pb, counter)
