@@ -76,7 +76,7 @@ from Bioconductor's [ExperimentHub](https://bioconductor.org/packages/Experiment
 
 ```{r}
 eh <- ExperimentHub()
-query(eh, c("MerfishData", "hypothalamus"))
+AnnotationHub::query(eh, c("MerfishData", "hypothalamus"))
 ```
 
 Note: complementary scRNA-seq of ~31,000 cells dissociated and captured from the

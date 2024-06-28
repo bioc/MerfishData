@@ -33,24 +33,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Installation
-
-To install the package, start R and enter: 
-
-```{r install, eval = FALSE}
-if(!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-if (BiocManager::version() >= "3.20") {
-    BiocManager::install("MerfishData")
-} else {
-    spdl::info(
-        "'MerfishData' requires Bioconductor version 3.20 or later, ",
-        "installing development version from Github"
-    )
-    devtools::install_github("ccb-hms/MerfishData")
-}
-```
-
 # Setup
 
 After the installation, we proceed by loading the package and additional packages
@@ -60,8 +42,8 @@ used in the vignette.
 library(MerfishData)
 library(ExperimentHub)
 library(ggplot2)
-library(terra)
 library(scater)
+library(terra)
 ```
 
 # Data
@@ -120,10 +102,8 @@ The dataset includes cell type labels with three levels of granularity
 (variables `tier1`, `tier2`, `tier3` in the `colData`).
 
 ```{r tiers}
-# Less specific
 table(spe$tier1)
 table(spe$tier2)
-# More specific
 table(spe$tier3)
 ```
 
@@ -142,10 +122,10 @@ Replicate Fig. 1C of the [paper](https://doi.org/10.1016/j.cell.2024.03.013), to
 visualize cell types in the UMAP space:
 
 ```{r fig1c, message=FALSE}
-plotReducedDim(spe, "UMAP", colour_by = "tier1",
-               scattermore=TRUE, rasterise = TRUE) +
-  scale_color_manual(values = metadata(spe)$colors_tier1) + 
-  labs(color='cell type') 
+plotReducedDim(spe, "UMAP", colour_by = "tier1", 
+               scattermore = TRUE, rasterise = TRUE) +
+    scale_color_manual(values = metadata(spe)$colors_tier1) + 
+    labs(color = "cell type") 
 ```
 
 ## Spatial organization
@@ -156,32 +136,33 @@ in one slide:
 ```{r fig1d}
 # Filter spatial coordinates for the selected slice ID
 slice_coords <- spatialCoords(spe)[spe$mouse_id == "082421_D0_m6" &
-                                     spe$sample_type=="Healthy" &
-                                     spe$technical_repeat_number=="1" &
-                                     spe$slice_id=="2", ]
+                                   spe$sample_type == "Healthy" &
+                                   spe$technical_repeat_number == "1" &
+                                   spe$slice_id == "2", ]
 # Rotate coordinates to have them match the rotation in the paper
-slice_coords_vec <- vect(slice_coords, type="points")
+slice_coords_vec <- vect(slice_coords, type = "points")
 slice_coords_r <- spin(slice_coords_vec, 180)
-slice_c <- as.data.frame(slice_coords_r, geom="XY")
-slice_df <- data.frame(x = slice_c[, 1],
-                       y = slice_c[, 2],
+slice_c <- as.data.frame(slice_coords_r, geom = "XY")
+slice_df <- data.frame(x = slice_c[,1],
+                       y = slice_c[,2],
                        tier1 = spe$tier1[spe$mouse_id == "082421_D0_m6" &
-                                     spe$sample_type=="Healthy" &
-                                     spe$technical_repeat_number=="1" &
-                                     spe$slice_id=="2"])
+                                         spe$sample_type == "Healthy" &
+                                         spe$technical_repeat_number == "1" &
+                                         spe$slice_id == "2"])
 # Plot
 ggplot(data = slice_df, aes(x = x, y = y, color = tier1)) +
-  geom_point(shape = 19, size = 0.5) +
-  scale_color_manual(values = metadata(spe)$colors_tier1) +
-  theme_bw(10) + guides(colour = guide_legend(override.aes = list(size=2)))+ 
-  labs(color='cell type') 
+    geom_point(shape = 19, size = 0.5) +
+    scale_color_manual(values = metadata(spe)$colors_tier1) +
+    guides(colour = guide_legend(override.aes = list(size = 2))) + 
+    labs(color = "cell type") +
+    theme_bw(10)
 ```
 
 
 We can compare the spatial organization of cells before the insurgence
 of colitis and at the considered timepoints (after 3, 9, and 21 days):
 
-```{r}
+```{r, fig.height = 8, fig.width = 10}
 # Filter spatial coordinates for the selected slice ID
 slice_coords <- spatialCoords(spe)[(spe$mouse_id == "062921_D0_m3a" &
                                      spe$slice_id=="2") |
@@ -193,8 +174,8 @@ slice_coords <- spatialCoords(spe)[(spe$mouse_id == "062921_D0_m3a" &
                                      spe$slice_id=="2"), ]
 
 
-slice_df <- data.frame(x = scale(slice_coords[, 1], scale=FALSE),
-                       y = scale(slice_coords[, 2], scale=FALSE),
+slice_df <- data.frame(x = scale(slice_coords[, 1], scale = FALSE),
+                       y = scale(slice_coords[, 2], scale = FALSE),
                        tier1 = spe$tier1[(spe$mouse_id == "062921_D0_m3a" &
                                      spe$slice_id=="2") |
                                      (spe$mouse_id == "092421_D3_m1" &
@@ -213,21 +194,20 @@ slice_df <- data.frame(x = scale(slice_coords[, 1], scale=FALSE),
                                      spe$slice_id=="2")])
 
 slice_df$day <- factor(slice_df$day, levels = c("Healthy", "DSS3", "DSS9", "DSS21"))
-# Plot
-p <- ggplot(data = slice_df, aes(x = x, y = y, color = tier1)) +
-  geom_point(shape = 19, size = 0.5) +
-  scale_color_manual(values = metadata(spe)$colors_tier1) +
-  theme_bw(10) + guides(colour = guide_legend(override.aes = list(size=2)))+ 
-  labs(color='cell type') 
-p <- p + facet_wrap( ~ day, ncol=2, nrow = 2, scales = "free")
-p
+
+ggplot(data = slice_df, aes(x = x, y = y, color = tier1)) +
+    geom_point(shape = 19, size = 0.5) +
+    scale_color_manual(values = metadata(spe)$colors_tier1) +
+    theme_bw(10) + guides(colour = guide_legend(override.aes = list(size=2)))+ 
+    labs(color = "cell type") +
+    facet_wrap( ~ day, ncol = 2, nrow = 2, scales = "free")
 ```
 
 We can also restrict the analysis to a specific macro-group to see the different
 distribution of Tier2 cell types. See an example the different composition
 of epithelial cells:
 
-```{r}
+```{r, fig.height = 8, fig.width = 10}
 slice_df$tier2 <- spe$tier2[(spe$mouse_id == "062921_D0_m3a" &
                                      spe$slice_id=="2") |
                                      (spe$mouse_id == "092421_D3_m1" &
@@ -243,7 +223,7 @@ slice_df$color <- factor(slice_df$color)
 
 colored_df <- slice_df[slice_df$tier1 == "Epithelial", ]
 
-p <- ggplot() +
+ggplot() +
   geom_point(data = slice_df, aes(x = x, y = y), color = "grey", 
              shape = 19, size = 0.1) +
   geom_point(data = colored_df, aes(x = x, y = y, color = tier2), 
@@ -253,17 +233,14 @@ p <- ggplot() +
   guides(colour = guide_legend(override.aes = list(size = 2))) +
   labs(color = 'cell type') +
   facet_wrap(~ day, ncol = 2, scales = "free")
-
-p
 ```
 
-```{r}
+```{r, fig.height = 8, fig.width = 10}
 slice_df$color <- ifelse(slice_df$tier1 == "Immune", 
-                         as.character(slice_df$tier2), "grey")
-
+                         as.character(slice_df$tier2),
+                         "grey")
 slice_df$color <- factor(slice_df$color)
-
-colored_df <- slice_df[slice_df$tier1 == "Immune", ]
+colored_df <- subset(slice_df, tier1 == "Immune")
 
 p <- ggplot() +
   geom_point(data = slice_df, aes(x = x, y = y), color = "grey", 

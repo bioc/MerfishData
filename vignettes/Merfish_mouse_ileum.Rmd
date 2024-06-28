@@ -88,7 +88,7 @@ from Bioconductor's [ExperimentHub](https://bioconductor.org/packages/Experiment
 
 ```{r}
 eh <- ExperimentHub()
-query(eh, c("MerfishData", "ileum"))
+AnnotationHub::query(eh, c("MerfishData", "ileum"))
 ```
 
 ## Raw data

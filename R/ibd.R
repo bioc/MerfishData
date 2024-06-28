@@ -35,7 +35,8 @@
 #' @examples spe <- MouseColonIbdCadinu2024()
 #' @export
 
-MouseColonIbdCadinu2024 <- function() {
+MouseColonIbdCadinu2024 <- function()
+{
     eh <- ExperimentHub::ExperimentHub()
     recs <- AnnotationHub::query(eh, c("MERFISH", "Cadinu2024"))
 
@@ -108,8 +109,9 @@ MouseColonIbdCadinu2024 <- function() {
     return(spe)
 }
 
-.getHDF5 <- function(recs, suffix, name) {
+.getHDF5 <- function(recs, suffix, name)
+{
     file_path <- .getResource(recs, suffix)
-    obj <- HDF5Array(file_path, name)
+    obj <- HDF5Array::HDF5Array(file_path, name)
     return(obj)
 }
