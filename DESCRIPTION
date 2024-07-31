@@ -46,7 +46,8 @@ Suggests:
     scattermore,
     terra,
     testthat,
-    BiocStyle
+    BiocStyle,
+    DropletUtils
 biocViews:
     ExperimentHub,
     ExpressionData,
